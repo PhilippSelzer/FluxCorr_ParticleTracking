@@ -1,0 +1,138 @@
+BR_1_667
+  k anisotropic
+    1e-6 1e-6 1e-7
+  specific storage                
+    1.0e-6
+  porosity
+    0.015  
+  unsaturated van genuchten functions
+    residual saturation
+      0.05
+    alpha
+      0.1
+    beta
+      1.64
+  end function
+end material
+
+BR_1_445
+  k anisotropic
+    1e-4 1e-4 1e-5
+  specific storage                
+    1.0e-6
+  porosity
+    0.015  
+  unsaturated van genuchten functions
+    residual saturation
+      0.05
+    alpha
+      0.1
+    beta
+      1.64
+  end function
+end material
+
+BR_5_778
+  k anisotropic
+    5e-7 5e-7 5e-8
+  specific storage                
+    1.0e-6
+  porosity
+    0.015  
+  unsaturated van genuchten functions
+    residual saturation
+      0.05
+    alpha
+      0.1
+    beta
+      1.64
+  end function
+end material 
+
+! Gravel; K from Simon & Stefan, van Genuchten parameters from Carsel and Parrish for sand
+gravel
+  k anisotropic
+    1e-3 1e-3 1e-4
+  specific storage                
+    2.2e-4 
+  porosity
+    0.1
+  unsaturated van genuchten functions
+    residual saturation
+      0.05
+    alpha
+      0.1
+    beta
+      1.64
+  end function
+end material
+
+! Tufa/Wiesenkalk; K from Simon & Stefan, van Genuchten Parameters from Carsel and Parrish for "sandy loam"
+tufa
+  k anisotropic
+    1e-4 1e-4 1e-5
+  specific storage                
+    2.2e-2   
+  porosity
+    0.41
+  unsaturated van genuchten functions
+    residual saturation
+      0.159
+    alpha
+      7.5
+    beta
+      1.89
+  end function
+end material
+
+! Clay layer between Tufa and gravel;
+clay
+  k anisotropic
+    1e-8 1e-8 1e-9
+  specific storage                
+    1.0e-6
+  porosity
+    0.38
+  unsaturated van genuchten functions
+    residual saturation
+      0.25
+    alpha
+      0.8
+    beta
+      1.31
+  end function
+end material 
+
+! Auenlehm covering the Tufa aquifer in the Ammer floodplain; K and unsat. van Genuchten parameters from Carsel & Parrish for "clayey loam"
+auenlehm
+  k anisotropic
+    5e-8 5e-8 5e-9
+  specific storage                
+    1.0e-6      
+  porosity
+    0.41
+  unsaturated van genuchten functions
+    residual saturation
+      0.23
+    alpha
+      1.9
+    beta
+      1.31
+  end function
+end material
+
+! average soil properties based on arithmetic mean
+soil_outside_FP
+  k anisotropic
+    1e-6 1e-6 1e-7
+  porosity
+    0.45
+  unsaturated van genuchten functions
+    residual saturation
+      0.18
+    alpha
+      1.52
+    beta
+      1.31
+  end function
+end material

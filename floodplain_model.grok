@@ -1,0 +1,666 @@
+A model of the Ammer floodplain around Unterjesingen.
+In case of questions please ask Jonas Allgeier (RTG, TÜ).
+end title
+
+!grid generation
+  read 3d grid, ascii
+  end grid generation
+
+!general simulation parameters
+  units: kilogram-metre-second
+  transient flow
+  unsaturated
+  no nodal flow check
+  finite difference mode
+  control volume
+  write nodal relative permeability for elements
+
+!porous media properties
+  use domain type
+  porous media
+
+  properties file
+    ./AdditionalFiles/floodplain_calibration.mprops
+
+  Assign zone zero
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_LK_tot.elist
+    new zone
+      1
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_LK_upper10.elist
+    new zone
+      2
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_GK_tot.elist
+    new zone
+      3
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_GK_weathered.elist
+    new zone
+      4
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_SS_tot.elist
+    new zone
+      5
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_Auenlehm.elist
+    new zone
+      6
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_Neckar_Gravel.elist
+    new zone
+      7
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_Gravel.elist
+    new zone
+      8
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_Clay.elist
+    new zone
+      9
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_Tufa.elist
+    new zone
+      10
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/lay_Auenlehm.elist
+    new zone
+      11
+  clear chosen elements
+
+  clear chosen elements
+    choose elements list
+      ./AdditionalFiles/riverbuffer.elist
+    new zone
+      12
+  clear chosen elements
+
+  ! lower Lettenkeuper
+  clear chosen zones
+    choose zone number
+      1
+    read properties
+      BR_1_667    
+    k anisotropic
+      1.863563e-07 1.863563e-07 3.760976e-08
+    unsaturated van genuchten functions
+      residual saturation
+        0.15
+      alpha
+        1.235001
+      beta
+        3.805919
+      Table smoothness factor
+        1e-5
+      Table maximum s-k slope
+        100
+      table minimum pressure
+        -100
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+  ! upper Lettenkeuper 
+  clear chosen zones
+    choose zone number
+      2
+    read properties
+      BR_1_667    
+    k anisotropic
+      6.688584e-08 6.688584e-08 1.349866e-08
+    unsaturated van genuchten functions
+      residual saturation
+        0.15
+      alpha
+        1.235001
+      beta
+        3.805919
+      Table smoothness factor
+        1e-5
+      Table maximum s-k slope
+        100
+      table minimum pressure
+        -100
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+  ! Gipskeuper
+  clear chosen zones
+    choose zone number
+      3
+    read properties
+      BR_1_667
+    k anisotropic
+      1.060744e-07 1.060744e-07 3.405266e-08
+    unsaturated van genuchten functions
+      residual saturation
+        0.15
+      alpha
+        1.235001
+      beta
+        3.805919
+      Table smoothness factor
+        1e-5
+      Table maximum s-k slope
+        100
+      table minimum pressure
+        -100
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+  ! weathered Gipskeuper
+  clear chosen zones
+    choose zone number
+      4
+    read properties
+      BR_1_445
+    k anisotropic
+      5.899476e-05 5.899476e-05 1.158164e-05
+    unsaturated van genuchten functions
+      residual saturation
+        0.15
+      alpha
+        1.235001
+      beta
+        3.805919
+      Table smoothness factor
+        1e-5
+      Table maximum s-k slope
+        100
+      table minimum pressure
+        -100
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+  ! Sandstone
+  clear chosen zones
+    choose zone number
+      5
+    read properties
+      BR_5_778
+    k anisotropic
+      2.953269e-08 2.953269e-08 7.404421e-09
+    unsaturated van genuchten functions
+      residual saturation
+        0.15
+      alpha
+        1.235001
+      beta
+        3.805919
+      Table smoothness factor
+        1e-5
+      Table maximum s-k slope
+        100
+      table minimum pressure
+        -100
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+  ! Hillslope Funnels
+  clear chosen zones
+    choose zone number
+      6
+    k anisotropic
+      2.779920e-07 2.779920e-07 1.981302e-07
+    unsaturated van genuchten functions
+      residual saturation
+        0.15
+      alpha
+        1.235001
+      beta
+        3.805919
+      Table smoothness factor
+        1e-5
+      Table maximum s-k slope
+        100
+      table minimum pressure
+        -100
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+
+  clear chosen zones
+    choose zone number
+      7
+    read properties
+      gravel
+    k anisotropic
+      3.960205e-05 3.960205e-05 1.204363e-05
+    ! unsaturated van genuchten functions
+    !   residual saturation
+    !     0.05
+    !   alpha
+    !     1.235001
+    !   beta
+    !     3.805919
+    ! end function
+    unsaturated tables
+      pressure-saturation
+        -10.0 1.0
+        0.000 1.0
+      end ! pressure-saturation
+
+      saturation-relative k
+        0.0 1.0
+        1.0 1.0
+      end ! saturation-relative k
+    end ! unsaturated tables
+  clear chosen zones
+
+  clear chosen zones
+    choose zone number
+      8
+    read properties
+      gravel
+    k anisotropic
+      3.276316e-04 3.276316e-04 2.935544e-04
+    ! unsaturated van genuchten functions
+    !   residual saturation
+    !     0.05
+    !   alpha
+    !     1.235001
+    !   beta
+    !     3.805919
+    ! end function
+    unsaturated tables
+      pressure-saturation
+        -10.0 1.0
+        0.000 1.0
+      end ! pressure-saturation
+
+      saturation-relative k
+        0.0 1.0
+        1.0 1.0
+      end ! saturation-relative k
+    end ! unsaturated tables
+  clear chosen zones
+
+  clear chosen zones
+    choose zone number
+      9
+    read properties
+      clay
+    k anisotropic
+      4.809808e-09 4.809808e-09 4.892560e-10
+    porosity
+      0.40  
+    unsaturated van genuchten functions
+      residual saturation
+        .17
+      alpha
+        0.012178
+      beta
+        1.408750
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+  clear chosen zones
+    choose zone number
+      10
+    read properties
+      tufa
+    k anisotropic
+      3.170492e-04 3.170492e-04 2.601860e-04
+    porosity
+      0.35
+    unsaturated van genuchten functions
+      residual saturation
+        0.18
+      alpha
+        11.512762
+      beta
+        2.195659
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+  clear chosen zones
+    choose zone number
+      11
+    read properties
+      auenlehm
+    k anisotropic
+      9.603000e-07 9.603000e-07 1.474237e-07
+    porosity
+      0.3
+    unsaturated van genuchten functions
+      residual saturation
+        0.25
+      alpha
+        0.513486
+      beta
+        1.798006
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+
+! &&S_rBZ_START&&
+  clear chosen zones
+    choose zone number
+      12
+    read properties
+      auenlehm
+    k isotropic
+      3.072245e-04
+    porosity
+      0.3
+    unsaturated van genuchten functions
+      residual saturation
+        0.25
+      alpha
+        0.513486
+      beta
+        1.798006
+      minimum relative permeability
+        1e-5
+    end function
+  clear chosen zones
+! &&S_rBZ_END&&
+
+  K to tecplot
+  conductivity.dat
+
+  Read elemental porosity from file
+  anEmptyFile
+
+  Porosity to tecplot
+  porosity.dat
+
+! definition of face sets and node sets
+  clear chosen nodes
+    choose nodes top gb
+      ./AdditionalFiles/bc_ditches_and_arbach.nchos
+    create node set
+      bc_ditches_and_arbach
+  clear chosen nodes
+
+  clear chosen faces
+    choose faces top gb
+      ./AdditionalFiles/rr_crop.echos
+    create face set from chosen faces
+      rr_cropland
+  clear chosen faces
+
+  clear chosen faces
+    choose faces top gb
+      ./AdditionalFiles/rr_fp.echos
+    create face set from chosen faces
+      rr_floodplain
+  clear chosen faces
+  
+  clear chosen faces
+    choose faces top gb
+      ./AdditionalFiles/rr_ss.echos
+    create face set from chosen faces
+      rr_sandstone
+  clear chosen faces
+  
+  clear chosen faces
+    choose faces top gb
+      ./AdditionalFiles/rr_urban.echos
+    create face set from chosen faces
+      rr_urban
+  clear chosen faces
+
+  clear chosen nodes
+    choose nodes list
+      ./AdditionalFiles/bcAmmerIn.nlist
+    create node set
+      bc_ammer_in
+  clear chosen nodes
+
+  clear chosen nodes
+    choose nodes list
+      ./AdditionalFiles/bcAmmerOut.nlist
+    create node set
+      bc_ammer_out
+  clear chosen nodes
+
+  clear chosen nodes
+    choose nodes list
+      ./AdditionalFiles/bc_neckar.nlist
+    create node set
+      bc_neckar
+  clear chosen nodes
+
+  clear chosen nodes
+    choose nodes top gb
+      ./AdditionalFiles/bc_river.nchos
+    create node set
+      river_set
+  clear chosen nodes
+
+!initial conditions
+  use domain type
+  porous media
+
+  choose nodes all
+    ! Initial head surface elevation
+    Restart file for heads
+    initial.hen
+  clear chosen nodes
+
+!boundary conditions
+  boundary condition  
+    type
+      simple drain
+
+    name
+      bc_ditch_drain
+      
+    node set
+      bc_ditches_and_arbach
+
+    time value table
+      0.0 0.001 1.e-1 
+    end
+      
+    tecplot output
+  end
+
+  boundary condition
+    type
+      flux
+
+    name
+      bc_rain_cropland
+
+    face set
+      rr_cropland
+
+    time value table
+      0.0 1.777660e-09
+    end
+  end
+
+  boundary condition
+    type
+      flux
+
+    name
+      bc_rain_floodplain
+
+    face set
+      rr_floodplain
+
+    time value table
+      0.0 1.187748e-09
+    end
+  end
+
+  boundary condition
+    type
+      flux
+
+    name
+      bc_rain_sandstone
+
+    face set
+      rr_sandstone
+
+    time value table
+      0.0 5.159632e-10
+    end
+  end
+
+  boundary condition
+    type
+      flux
+
+    name
+      bc_rain_urban
+
+    face set
+      rr_urban
+
+    time value table
+      0.0 1.489827e-09
+    end
+  end
+
+  boundary condition
+    type
+      head
+
+    name
+      bc_ammer_in
+
+    node set
+      bc_ammer_in
+    
+    time value table
+      0.0   3.463483e+02
+    end
+
+    tecplot output
+  end
+
+  boundary condition
+    type
+      head
+
+    name
+      bc_ammer_out
+
+    node set
+      bc_ammer_out
+
+    time value table
+      0.0 3.381526e+02
+    end
+    
+    tecplot output
+  end
+
+  boundary condition
+    type
+      head
+
+    name
+      bc_neckar
+
+    node set
+      bc_neckar
+
+    time file table
+      0.0   ./AdditionalFiles/bc_neckar.lst
+    end
+    
+    tecplot output
+  end
+
+  boundary condition
+    type
+      simple river
+
+    name
+      bc_river
+
+    node set
+      river_set
+
+    time file table
+      0.0   ./AdditionalFiles/bc_river.lst
+    end
+    
+    tecplot output
+  end
+
+!simulation and time step control parameters
+  head control
+    2.50
+  saturation control
+    0.5
+  newton iteration control
+    12
+  newton maximum iterations
+    20
+  maximum timestep multiplier
+    1.25
+  minimum timestep multiplier
+    0.05
+
+  flow solver maximum iterations
+    1000
+  compute underrelaxation factor
+  jacobian epsilon
+    5.0d-6
+  newton absolute convergence criteria
+    1.0d-5
+  newton residual convergence criteria
+    1.0d-5
+
+!output
+  Time output scientific format
+  output times
+    3e12
+  end
+
