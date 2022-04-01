@@ -16,7 +16,8 @@
 % Acknowledgement: The author thanks Jonas Allgeier and Daniel Erdal for
 % their valuable comments and suggestions, as well as for testing my codes
 % and their help in the debugging process. The author thanks his PhD
-% advisors Olaf A. Cirpka and René Therrien for their contributions.
+% supervisors Olaf A. Cirpka and RenÃ© Therrien for their valuable 
+% contributions and their advise.
 
 
 %%
