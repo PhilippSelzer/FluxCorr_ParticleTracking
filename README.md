@@ -13,5 +13,5 @@ The code 'PartTrack_Prisms.m' can be run as often as liked for a specific model,
 it is the actual particle tracking routine.
 
 If some error for reading a text-file occurs, presumably the first line of the 
-respective text file, which contains some meta-information needs, to be deleted
-manually, and the issue will be fixed.
+respective text-file, which contains some meta-information, needs to be deleted
+manually and the issue will be fixed.
